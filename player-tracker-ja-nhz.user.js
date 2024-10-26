@@ -36,7 +36,7 @@ function wrapper(plugin_info) {
     window.PLAYER_TRACKER_MIN_ZOOM = 9;
     window.PLAYER_TRACKER_MIN_OPACITY = 0.3;
     window.PLAYER_TRACKER_LINE_COLOUR_ENL = '#ff0080';
-    window.PLAYER_TRACKER_LINE_COLOUR_RES = '#50443c';
+    window.PLAYER_TRACKER_LINE_COLOUR_RES = '#60c0FF';
 
     var PLAYER_TRACKER_NHZ_STORAGE_KEY = 'player-tracer-nhz-option';
     // オプション値
@@ -422,7 +422,7 @@ function wrapper(plugin_info) {
 
                 if(playerData.team === 'RESISTANCE')
                     polyLineByAgeRes[ageBucket].push(line);
-                else
+                else if(playerData.team === 'ENLIGHTENED')
                     polyLineByAgeEnl[ageBucket].push(line);
             }
 
