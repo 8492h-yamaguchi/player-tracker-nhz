@@ -7,7 +7,7 @@
 - AGの履歴詳細画面の履歴数を指定可能にした
 
 ## インストール
-[Plugin Download](https://github.com/NightHackzz/player-tracker-nhz/raw/master/player-tracker-ja-nhz.user.js) <br>
+[Plugin Download](https://github.com/8492h-yamaguchi/player-tracker-nhz/raw/master/player-tracker-ja-nhz.user.js) <br>
 
 - あらかじめ、標準の「Plaert tracker」はOFFに設定してください。<br>
 ![設定画面](fig1.png)<br>
