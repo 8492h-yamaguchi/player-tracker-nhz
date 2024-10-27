@@ -7,18 +7,14 @@
 - AGの履歴詳細画面の履歴数を指定可能にした
 
 ## インストール
-[Plugin Download](https://github.com/8492h-yamaguchi/player-tracker-nhz/raw/master/player-tracker-ja-nhz.user.js) <br>
+[Plugin Download](https://github.com/8492h-yamaguchi/player-tracker-nhz/raw/main/player-tracker-ja-nhz.user.js) <br>
 
 - あらかじめ、標準の「Plaert tracker」はOFFに設定してください。<br>
-![設定画面](fig1.png)<br>
-- 上記「Plugin Download」リンクを選択し、開いた画面で「インストール」ボタンを押してください。<br>
-
-
+- `Setting` > `IITC Plugins` > `User Scripts` > `+` からリンクを指定してインストール<br>
 
 ## 注意事項
-~~原則、新規機能追加や、既存機能の拡張はしません。~~<br>
 不具合のある機能の修正、使えなくなってしまった機能の削除は行う可能性があります。<br>
-本スクリプトの利用にかかわる一切の責任は利用者にあり、翻訳者および製作者・配布元が責任を負うことはありません。<br>
+本スクリプトの利用にかかわる一切の責任は利用者にあり、翻訳者および製作者・改修者・配布元が責任を負うことはありません。<br>
 
 ## ライセンス
 本スクリプトのライセンスは、[ISC Licence](https://www.isc.org/downloads/software-support-policy/isc-license/)とさせて頂きます。
