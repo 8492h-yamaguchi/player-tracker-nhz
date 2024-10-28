@@ -7,10 +7,18 @@
 - AGの履歴詳細画面の履歴数を指定可能にした
 
 ## インストール
-[Plugin Download](https://github.com/8492h-yamaguchi/player-tracker-nhz/raw/main/player-tracker-ja-nhz.user.js) <br>
+### 前提条件
+- あらかじめ、標準の「Plaert tracker」はOFFに設定してください。
+- `Setting` > `IITC Plugins` > `User Scripts` > `+` からリンクを指定する
 
-- あらかじめ、標準の「Plaert tracker」はOFFに設定してください。<br>
-- `Setting` > `IITC Plugins` > `User Scripts` > `+` からリンクを指定してインストール<br>
+### githubからインストール
+- 下記のURLを指定する
+    - https://github.com/8492h-yamaguchi/player-tracker-nhz/raw/main/player-tracker-ja-nhz.user.js
+
+### ローカル環境からインストール
+- `$ doker-compose up -d`
+- 下記のURLを指定する
+    - http://localhost:8080/player-tracker-ja-nhz.user.js
 
 ## 注意事項
 不具合のある機能の修正、使えなくなってしまった機能の削除は行う可能性があります。<br>
