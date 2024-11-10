@@ -36,7 +36,7 @@ function wrapper(plugin_info) {
     window.PLAYER_TRACKER_MIN_ZOOM = 9;
     window.PLAYER_TRACKER_MIN_OPACITY = 0.3;
     window.PLAYER_TRACKER_LINE_COLOUR_ENL = '#ff0080';
-    window.PLAYER_TRACKER_LINE_COLOUR_RES = '#50443c';
+    window.PLAYER_TRACKER_LINE_COLOUR_RES = '#60c0FF';
 
     var PLAYER_TRACKER_NHZ_STORAGE_KEY = 'player-tracer-nhz-option';
     // オプション値
@@ -45,6 +45,10 @@ function wrapper(plugin_info) {
 
     // use own namespace for plugin
     window.plugin.playerTracker = function() {};
+
+    // const値
+    var TEAM_ENL='ENLIGHTENED';
+    var TEAM_RES='RESISTANCE';
 
     window.plugin.playerTracker.setup = function() {
         $('<style>').prop('type', 'text/css').html('.plugin-player-tracker-popup a {\n	color: inherit;\n	text-decoration: underline;\n	text-decoration-style: dashed;\n	-moz-text-decoration-style: dashed;\n	-webkit-text-decoration-style: dashed;\n}\n').appendTo('head');
@@ -66,7 +70,7 @@ function wrapper(plugin_info) {
         plugin.playerTracker.drawnTracesEnl = new L.LayerGroup();
         plugin.playerTracker.drawnTracesRes = new L.LayerGroup();
         // to avoid any favouritism, we'll put the player's own faction layer first
-        if (PLAYER.team == 'RESISTANCE') {
+        if (PLAYER.team == TEAM_RES) {
             window.addLayerGroup('Player Tracker Resistance', plugin.playerTracker.drawnTracesRes, true);
             window.addLayerGroup('Player Tracker Enlightened', plugin.playerTracker.drawnTracesEnl, true);
         } else {
@@ -264,7 +268,7 @@ function wrapper(plugin_info) {
             if(json[1] < limit) return true;
 
             // find player and portal information
-            var plrname, lat, lng, id=null, name, address;
+            var plrname, lat, lng, id=null, name, address, team;
             var skipThisMessage = false;
             $.each(json[2].plext.markup, function(ind, markup) {
                 switch(markup[0]) {
@@ -281,6 +285,7 @@ function wrapper(plugin_info) {
                         break;
                     case 'PLAYER':
                         plrname = markup[1].plain;
+                        team = markup[1].team;
                         break;
                     case 'PORTAL':
                         // link messages are “player linked X to Y” and the player is at
@@ -312,11 +317,13 @@ function wrapper(plugin_info) {
 
             // short-path if this is a new player
             if(!playerData || playerData.events.length === 0) {
-                plugin.playerTracker.stored[plrname] = {
-                    nick: plrname,
-                    team: json[2].plext.team,
-                    events: [newEvent]
-                };
+                if( team===TEAM_ENL || team===TEAM_RES ){
+                    plugin.playerTracker.stored[plrname] = {
+                        nick: plrname,
+                        team: team,
+                        events: [newEvent]
+                    };
+                }
                 return true;
             }
 
@@ -420,7 +427,7 @@ function wrapper(plugin_info) {
                 var ageBucket = Math.min(parseInt((now - p.time) / split), 4-1);
                 var line = [gllfe(p), gllfe(playerData.events[i-1])];
 
-                if(playerData.team === 'RESISTANCE')
+                if(playerData.team === TEAM_RES)
                     polyLineByAgeRes[ageBucket].push(line);
                 else
                     polyLineByAgeEnl[ageBucket].push(line);
@@ -437,7 +444,7 @@ function wrapper(plugin_info) {
             var popup = $('<div>')
             .addClass('plugin-player-tracker-popup');
             $('<span>')
-                .addClass('nickname ' + (playerData.team === 'RESISTANCE' ? 'res' : 'enl'))
+                .addClass('nickname ' + (playerData.team === TEAM_RES ? 'res' : 'enl'))
                 .css('font-weight', 'bold')
                 .text(playerData.nick)
                 .appendTo(popup);
@@ -509,7 +516,7 @@ function wrapper(plugin_info) {
             var absOpacity = window.PLAYER_TRACKER_MIN_OPACITY + (1 - window.PLAYER_TRACKER_MIN_OPACITY) * relOpacity;
 
             // marker itself
-            var icon = playerData.team === 'RESISTANCE' ?  new plugin.playerTracker.iconRes() :  new plugin.playerTracker.iconEnl();
+            var icon = playerData.team === TEAM_RES ?  new plugin.playerTracker.iconRes() :  new plugin.playerTracker.iconEnl();
             // as per OverlappingMarkerSpiderfier docs, click events (popups, etc) must be handled via it rather than the standard
             // marker click events. so store the popup text in the options, then display it in the oms click handler
             var m = L.marker(gllfe(last), {icon: icon, referenceToPortal: closestPortal, opacity: absOpacity, desc: popup[0], title: tooltip});
@@ -524,7 +531,7 @@ function wrapper(plugin_info) {
 
             playerData.marker = m;
 
-            m.addTo(playerData.team === 'RESISTANCE' ? plugin.playerTracker.drawnTracesRes : plugin.playerTracker.drawnTracesEnl);
+            m.addTo(playerData.team === TEAM_RES ? plugin.playerTracker.drawnTracesRes : plugin.playerTracker.drawnTracesEnl);
             window.registerMarkerForOMS(m);
 
             // jQueryUI doesn’t automatically notice the new markers
@@ -696,6 +703,7 @@ function wrapper(plugin_info) {
     // if IITC has already booted, immediately run the 'setup' function
     if(window.iitcLoaded && typeof setup === 'function') setup();
 } // wrapper end
+
 // inject code into site context
 var script = document.createElement('script');
 var info = {};
