@@ -285,7 +285,7 @@ function wrapper(plugin_info) {
                         break;
                     case 'PLAYER':
                         plrname = markup[1].plain;
-                        team = json[2].plext.team;
+                        team = markup[1].team;
                         break;
                     case 'PORTAL':
                         // link messages are “player linked X to Y” and the player is at
