@@ -35,8 +35,8 @@ function wrapper(plugin_info) {
     window.PLAYER_TRACKER_MAX_TIME = 60*60*1000; // in milliseconds
     window.PLAYER_TRACKER_MIN_ZOOM = 9;
     window.PLAYER_TRACKER_MIN_OPACITY = 0.3;
-    window.PLAYER_TRACKER_LINE_COLOUR_ENL = '#ff0080';
-    window.PLAYER_TRACKER_LINE_COLOUR_RES = '#60c0FF';
+    window.PLAYER_TRACKER_LINE_COLOUR_ENL = '#C0FF60';
+    window.PLAYER_TRACKER_LINE_COLOUR_RES = '#60C0FF';
 
     var PLAYER_TRACKER_NHZ_STORAGE_KEY = 'player-tracer-nhz-option';
     // オプション値
@@ -144,8 +144,11 @@ function wrapper(plugin_info) {
             value : 6 ,
             id : 'player-tracker-nhz-opt-history'
         }))
-        .append($('<option>').val(10).text("10履歴"))
-        .append($('<option>').val(20).text("20履歴"));
+            .append($('<option>').val(10).text("10履歴"))
+            .append($('<option>').val(20).text("20履歴"))
+            .append($('<option>').val(40).text("40履歴"))
+            .append($('<option>').val(80).text("80履歴"))
+            .append($('<option>').val(160).text("160履歴"));
         html.append(select_history);
         html.append($('<p>').text('※COMMのAllを過去にさかのぼって表示すると、過去追跡が可能です'));
 
