@@ -129,10 +129,10 @@ function wrapper(plugin_info) {
             value : 3 ,
             id : 'player-tracker-nhz-opt-priod'
         }))
-        .append($('<option>').val(3).text("3時間"))
-        .append($('<option>').val(6).text("6時間"))
-        .append($('<option>').val(12).text("12時間"))
-        .append($('<option>').val(24).text("24時間"));
+            .append($('<option>').val(3).text("3時間"))
+            .append($('<option>').val(6).text("6時間"))
+            .append($('<option>').val(12).text("12時間"))
+            .append($('<option>').val(24).text("24時間"));
         html.append(select_priod);
         html.append('<br>');
         html.append($('<label>' , {
