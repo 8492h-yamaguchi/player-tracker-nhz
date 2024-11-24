@@ -13,7 +13,8 @@
 
 ### githubからインストール
 - 下記のURLを指定する
-    - https://github.com/8492h-yamaguchi/player-tracker-nhz/raw/main/player-tracker-ja-nhz.user.js
+    - [mainブランチ](https://github.com/8492h-yamaguchi/player-tracker-nhz/raw/main/player-tracker-ja-nhz.user.js)
+    - [developブランチ](https://github.com/8492h-yamaguchi/player-tracker-nhz/raw/develop/player-tracker-ja-nhz.user.js)
 
 ### ローカル環境からインストール
 - `$ doker-compose up -d`
